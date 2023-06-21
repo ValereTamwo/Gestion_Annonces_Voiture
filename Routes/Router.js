@@ -1,5 +1,6 @@
 const express = require("express")
 const controller = require("./../Controllers/UserController")
+const authController = require("./../Controllers/AuthController")
 const Router = express.Router()
 
 
@@ -15,6 +16,16 @@ const Router = express.Router()
  *              description:Welcome to the home.
  */
 Router.get("/",controller.index)
+
+//route pour l'authentification
+Router.get("/ ",controller.middleware,controller.home)
+
+Router.get("/login",authController.login)
+Router.get("/register",authController.register)
+Router.post("/login",authController.loginPost)
+Router.post("/register",authController.registerPost)
+Router.get("/logout",authController.logout)
+
 
 /**
  * @swagger
@@ -46,10 +57,6 @@ Router.get("/users", controller.index);
  *              description: A user object.
  */
 Router.get("/users/:id",controller.index );
-
-
-Router.get("/home",controller.home)
-
 
 
 module.exports = Router
