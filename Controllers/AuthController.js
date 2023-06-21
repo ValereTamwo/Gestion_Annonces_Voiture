@@ -14,11 +14,13 @@ exports.loginPost = (req,res)=>{
     db.get(`SELECT * FROM users WHERE email = ? AND mdp = ?`, [email, mdp], (err, row) => {
         if (err) {
             console.error(err.message);
-            return res.redirect('/');
+            console.log(err.message);
+               req.flash('error', err.message);
+       return res.redirect('back'); 
         }
 
         if (!row) {
-            return res.redirect('/');
+            return res.redirect('/login');
         }
         console.log("user found");
         console.log(row);
@@ -52,16 +54,21 @@ exports.registerPost = (req,res)=>{
     try {
         db.all("SELECT * FROM users WHERE email=?",[email],(err,row)=>{
             if (err) {
-                console.log(err.message);
+               console.log(err.message);
+               req.flash('error', err.message);
+       res.redirect('back');
             }else if(row!=null){
-                //redirection ver la page d'enregistrement
-                console.log("utilisateur prexistant");
-                res.render("/pages/register",{error:e.message})
+                //redirection ver la page d'enregistrement 
+               req.flash('error',"cette adresse mail est deja utiliser");
+                return res.redirect('back');
             }else{
                         //creation de l'utilisateur
         db.run("INSERT INTO users(email,pseudo,mdp) values(?,?,?)",[email,pseudo,mdp],(err,row)=>{
             if (err) {
                 console.log(err.message);
+                console.log(err.message);
+               req.flash('error', err.message);
+       res.redirect('back');
             }else{
                 //redirection ver la parge de connection
                 res.render("/pages/login",{error:e.message})
@@ -74,6 +81,9 @@ exports.registerPost = (req,res)=>{
 
     } catch (error) {
         console.log(error.message);
+        console.log(err.message);
+               req.flash('error', err.message);
+       res.redirect('back');
         res.render("/register",{error:e.message})
     }
         
@@ -82,7 +92,11 @@ exports.registerPost = (req,res)=>{
 
 //route pour se deconnecter
 exports.logout =  (req, res) => {
-    req.session.destroy()
-    res.redirect('/login')
+    console.log("deconection");
+    setTimeout(() => {
+        console.log("compte a rebour de 3s avant la deconexion");
+        req.session.destroy()
+        res.redirect('/login')
+    }, 3000);
 };
 

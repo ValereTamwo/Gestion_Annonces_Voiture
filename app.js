@@ -9,7 +9,8 @@ const cors = require("cors")
 const corsOptions = {
   origin: "*",
 };
-
+// app.use(express.static('public'));
+app.use(express.static( __dirname + "/public" ))
 const corsMiddleware = cors(corsOptions);
 
 app.use(corsMiddleware)
