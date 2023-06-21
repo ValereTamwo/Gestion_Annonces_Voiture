@@ -11,16 +11,33 @@ const port = 3001
 // })
 
 
-app.use( express.static('public'));
+app.use( express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 // app.use(expressLayouts);
 
 app.get("/dashboard", (req, res, next) => {
-    res.render('pages/dashboard')
+    res.render('pages/dashboard/home', {url: req.url.split("/")})
+
+})
+
+app.get("/dashboard/cars", (req, res, next) => {
+    res.render('pages/dashboard/cars', {url: req.url.split("/")})
+})
+
+app.get("/dashboard/announcements", (req, res, next) => {
+    res.render('pages/dashboard/announcements', {url: req.url.split("/")})
+})
+
+app.get("/dashboard/users", (req, res, next) => {
+    res.render('pages/dashboard/users', {url: req.url.split("/")})
+})
+
+app.get("/dashboard/reporting", (req, res, next) => {
+    res.render('pages/dashboard/reporting', {url: req.url.split("/")})
 })
 
 app.get("/signin", (req, res, next) => {
-    res.render("pages/signin")
+    res.render("pages/signin", {url: req.url.split("/")})
 })
 
 app.get("/signup", (req, res, next) => {
