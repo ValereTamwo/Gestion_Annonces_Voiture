@@ -14,7 +14,7 @@ const Router = express.Router()
  *          200:
  *              description:Welcome to the home.
  */
-Router.get("/",controller.index)
+Router.get("/",controller.home)
 
 /**
  * @swagger
