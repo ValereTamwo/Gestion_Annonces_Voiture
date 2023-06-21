@@ -9,3 +9,8 @@ exports.home = (req,res)=>{
 exports.about = (req, res) => { 
     res.render("pages/about")
 }
+
+
+exports.detail = (req, res) => { 
+    res.render("pages/details")
+}
