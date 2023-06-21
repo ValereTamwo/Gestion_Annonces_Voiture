@@ -4,6 +4,7 @@ exports.index = (req,res)=>{
 }
 
 exports.home = (req,res)=>{
+
     res.render("pages/dashboard")
 }
 
@@ -13,3 +14,12 @@ exports.middleware =  (req, res,next) => {
     }
     req.next()
 };
+
+exports.about = (req, res) => { 
+    res.render("pages/about")
+}
+
+
+exports.detail = (req, res) => { 
+    res.render("pages/details")
+} 

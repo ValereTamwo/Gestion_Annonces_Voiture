@@ -48,7 +48,9 @@ Router.post("/voitures/create",VoitureController.createVoitureSave)
 // Router.get("/annonces/search",controller.middleware,AnnonceController.search)
 // Router.get("/annonces/:id",controller.middleware,AnnonceController.info)
 
-
+ 
+Router.get("/",controller.home)
+Router.get("/details",controller.detail) 
 /**
  * @swagger
  * /users:
@@ -61,4 +63,29 @@ Router.post("/voitures/create",VoitureController.createVoitureSave)
  */
 Router.get("/users", controller.index);
 
+ 
+/**
+ * @swagger
+ * /users/{id}:
+ *  get:
+ *      summary: Get a user by ID
+ *      description: Retrieve a user by their ID.
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            description: ID of the user to retrieve.
+ *            schema:
+ *              type: integer
+ *      responses:
+ *          200:
+ *              description: A user object.
+ */
+Router.get("/users/:id",controller.index );
+
+
+Router.get("/home",controller.home)
+Router.get("/about",controller.about)
+
+ 
 module.exports = Router

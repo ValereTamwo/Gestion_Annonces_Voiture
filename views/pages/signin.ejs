@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/output.css">
+    <title>CarSell | signin</title>
+</head>
+
+<body>
+
+    <%- include('../partials/navbar') %>
+
+    <main class="w-full h-max bg-[#1f551a5e]">
+        <div class="relative">
+            <img src="https://img.freepik.com/photos-gratuite/jeune-homme-affaires-noir-attrayant-achete-nouvelle-voiture-il-tient-cles-dans-sa-main-reves-deviennent-realite_146671-18398.jpg?size=626&ext=jpg&uid=R37043179&ga=GA1.2.1576772803.1685821789&semt=ais"
+                class="absolute inset-0 w-full object-cover h-full object-center blur-sm" alt="" />
+            <div class="relative bg-[rgb(17,24,39)] bg-opacity-75">
+                <div class="px-4 py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-16">
+                    <div class="flex flex-col items-center justify-center xl:flex-row">
+
+                        <div class="w-full max-w-xl xl:px-8 xl:w-5/12">
+                            <div class="bg-white rounded shadow-2xl p-7 sm:p-10">
+                                <h3 class="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
+                                    Login
+
+                                </h3>
+                                <form action="" method="post">
+                                    <div class="mb-1 sm:mb-2">
+                                        <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Email
+                                            Address</label>
+                                        <input id="emailAddress" type="email"
+                                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-[#35a12b] focus:ring-[#35a12b] focus:ring-opacity-40 focus:outline-none focus:ring"
+                                            name="email">
+                                    </div>
+                                    <div class="mb-1 sm:mb-2">
+                                        <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
+                                        <input id="password" type="password"
+                                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-[#35a12b] focus:ring-[#35a12b] focus:ring-opacity-40 focus:outline-none focus:ring"
+                                            name="password">
+                                    </div>
+                                    <div class="mt-4 mb-2 sm:mb-4">
+                                        <button type="submit"
+                                            class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#1f551a] hover:bg-[#1f551afb] hover:shadow-lg focus:shadow-outline focus:outline-none">
+                                            Sign up
+                                        </button>
+                                    </div>
+                                    <p class="text-xs text-gray-600 sm:text-sm md:text-base text-center">
+                                        Don't have an account ? <a href="/signup" class="text-[#1f551a] hover:text-[#1f551ae1]">sign in</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Footer section start -->
+    <%- include('../partials/footer') %>
+
+
+</body>
+
+</html>
