@@ -5,3 +5,7 @@ exports.index = (req,res)=>{
 exports.home = (req,res)=>{
     res.render("pages/home")
 }
+
+exports.about = (req, res) => { 
+    res.render("pages/about")
+}
