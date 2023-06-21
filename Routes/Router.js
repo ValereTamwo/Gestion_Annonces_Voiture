@@ -51,5 +51,5 @@ Router.get("/users/:id",controller.index );
 Router.get("/home",controller.home)
 
 
-
+ 
 module.exports = Router
