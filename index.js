@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 // app.use(expressLayouts);
 
 app.get("/dashboard", (req, res, next) => {
-    res.render('dashboard')
+    res.render('pages/dashboard')
 })
 
 app.get("/signin", (req, res, next) => {
