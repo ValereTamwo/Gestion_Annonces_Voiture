@@ -18,14 +18,17 @@ const Router = express.Router()
  *              description:Welcome to the home.
  */
 Router.get("/",controller.index)
-Router.get("/dashboard ",controller.middleware,controller.home)
+Router.get("/dashboard",controller.home)
+Router.get("/dashboard/cars",controller.cars)
+Router.get("/dashboard/announcements",controller.announcements)
+Router.get("/dashboard/reporting",controller.reporting)
 
 
 //route pour l'authentification
-Router.get("/login",authController.login)
-Router.get("/register",authController.register)
-Router.post("/login",authController.loginPost)
-Router.post("/register",authController.registerPost)
+Router.get("/signin",authController.login)
+Router.post("/signin",authController.loginPost)
+Router.get("/signup",authController.register)
+Router.post("/signup",authController.registerPost)
 Router.get("/logout",authController.logout)
 //Routes  Pour les voitures
 Router.get("/voitures",controller.middleware,VoitureController.listVoiture)

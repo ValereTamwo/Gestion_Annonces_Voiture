@@ -3,7 +3,8 @@ const db = require("./../Models/Entity")
 
 //get the login page
 exports.login = (req,res)=>{
-    res.render("pages/login")
+        res.render("pages/signin", {url: req.url.split("/")})
+
 }
 //set the logget user
 exports.loginPost = (req,res)=>{
@@ -37,7 +38,7 @@ exports.loginPost = (req,res)=>{
  * route pour avoir la page de conexion
  */
 exports.register = (req,res)=>{
-    res.render("pages/register")
+     res.render("pages/signup")
 }
 
 //set registration
