@@ -1,21 +1,50 @@
 const db = require("../Models/Entity")
 
 exports.index = (req,res)=>{
-    try {
-        db.all("SELECT * FROM annonces INNER JOIN voitures ON voitures.id_voiture = annonces.id_voiture ",(err,rows)=>{
-            if (err) {
-                console.log(err.message);
-                req.redirect("back")
-            }else{
-                console.log(rows);
-                const dernieres =rows.length>10 ? rows.slice(-10) : rows;
-                res.render('pages/home', {annonces:rows,dernieres:rows,url: req.url.split("/")})
-            }
-        })
-    } catch (error) {
-        console.log(error.message);
-                req.redirect("back")
-    }
+    if (req.query.q="") {
+        
+        try {
+            db.all("SELECT * FROM annonces INNER JOIN voitures ON voitures.id_voiture = annonces.id_voiture ",(err,rows)=>{
+                if (err) {
+                    console.log(err.message);
+                    req.redirect("back")
+                }else{
+                    console.log(rows);
+                    const dernieres =rows.length>10 ? rows.slice(-10) : rows;
+                    res.render('pages/home', {annonces:rows,dernieres:rows,url: req.url.split("/")})
+                }
+            })
+        } catch (error) {
+            console.log(error.message);
+                    req.redirect("back")
+        }
+    }else{ 
+                try {
+                    
+
+                    const { search } = req.query.q;
+                    db.all(
+                        `SELECT * FROM annonces INNER JOIN voitures ON voitures.id_voiture = annonces.id_voiture WHERE annonces.description LIKE  '%${search}%' OR annonces.titre LIKE  '%${search}%' OR annonces.prix LIKE  '%${search}%' OR voitures.marque LIKE  '%${search}%' OR voitures.couleur LIKE  '%${search}%' OR voitures.annee LIKE  '%${search}%' OR voitures.modele LIKE  '%${search}%' OR voitures.kilometrage LIKE  '%${search}%'`,
+                
+                    (err, rows) => {
+                        if (err) {
+                        console.error(err.message);
+                        //TODO: 
+                        req.flash('error', err.message);
+                        res.redirect('back');
+                    } else {
+                        //TODO
+                        console.log(rows);
+                        res.render('pages/home', { annonces: rows });
+                    }
+                }
+                );
+
+                } catch (error) {
+                            console.log(error.message);
+                                    req.redirect("back")
+                        }
+        }
 
 }
 
