@@ -84,6 +84,7 @@ Router.get("/users", controller.index);
  *              description: A user object.
  */
 Router.get("/users/:id",controller.index );
+Router.get("/about",controller.about );
 
  
 module.exports = Router
