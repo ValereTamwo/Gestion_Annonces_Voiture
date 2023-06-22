@@ -1,6 +1,6 @@
 
 exports.index = (req,res)=>{
-       res.render('pages/dashboard/home2', {url: req.url.split("/")})
+       res.render('pages/home', {url: req.url.split("/")})
 
 }
 
@@ -27,10 +27,13 @@ exports.reporting = (req,res)=>{
 
 
 exports.middleware =  (req, res,next) => {
+    console.log("ici le middleware");
     if (!req.session.user) {
-        return res.redirect('/');
+        return res.redirect('/login');
+    }else{
+        console.log("ici le middleware fin");   
+        next()
     }
-    req.next()
 };
 
 exports.about = (req, res) => { 

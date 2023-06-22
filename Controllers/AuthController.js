@@ -1,4 +1,4 @@
-const e = require("express")
+// const e = require("express")
 const db = require("./../Models/Entity")
 
 //get the login page
@@ -8,6 +8,7 @@ exports.login = (req,res)=>{
 }
 //set the logget user
 exports.loginPost = (req,res)=>{
+    console.log("debut du login");
      const { email, mdp } = req.body;
      console.log(req.body);
     console.log(email,"\n",mdp);
@@ -17,16 +18,21 @@ exports.loginPost = (req,res)=>{
             console.error(err.message);
             console.log(err.message);
                req.flash('error', err.message);
-       return res.redirect('back'); 
-        }
+        res.redirect('back'); 
+        }else if (!row) {
+            console.log("logage de la ligne");
+            console.log(row);
+            console.log("utilisateur non trouver");
+            const previousUrl = req.headers.referer || '/';
+            res.redirect(previousUrl);
 
-        if (!row) {
-            return res.redirect('/login');
+        }else{
+
+            console.log("user found");
+            console.log(row);
+            req.session.user = row;
+            res.redirect('/dashboard');
         }
-        console.log("user found");
-        console.log(row);
-        req.session.user = row;
-        res.redirect('/dashboard');
     });
 }
 
@@ -38,6 +44,8 @@ exports.loginPost = (req,res)=>{
  * route pour avoir la page de conexion
  */
 exports.register = (req,res)=>{
+     req.flash('success', 'Votre compte a été créé avec succès!');
+     req.flash('error', 'Votre compte a été créé avec succès erroe!');
      res.render("pages/signup")
 }
 
@@ -58,10 +66,12 @@ exports.registerPost = (req,res)=>{
                console.log(err.message);
                req.flash('error', err.message);
        res.redirect('back');
-            }else if(row!=null){
+            }else if(row.length != 0 ){
+                console.log("utilisateur prexistant");
+                console.log(row);
                 //redirection ver la page d'enregistrement 
                req.flash('error',"cette adresse mail est deja utiliser");
-                return res.redirect('back');
+                return res.redirect('signin');
             }else{
                         //creation de l'utilisateur
         db.run("INSERT INTO users(email,pseudo,mdp) values(?,?,?)",[email,pseudo,mdp],(err,row)=>{
@@ -72,7 +82,7 @@ exports.registerPost = (req,res)=>{
        res.redirect('back');
             }else{
                 //redirection ver la parge de connection
-                res.render("/pages/login",{error:e.message})
+                res.render("/pages/signin",{error:e.message})
             }
         })
             }

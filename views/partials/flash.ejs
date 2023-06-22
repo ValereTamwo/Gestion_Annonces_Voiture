@@ -1,9 +1,34 @@
-<% if (messages.success) { %>
+<!-- <% if (success) { %>
     <div class="alert alert-success">
-        <%= messages.success %>
+        <%= success %>
 </div>
-    <% } else if (messages.error) { %>
+    <% } else if (error) { %>
         <div class="alert alert-danger">
-            <%= messages.error %>
+            <%= error %>
         </div>
-<% } %>
+<% } %> -->
+
+<!-- <% if (successMsg) { %>
+    <div class="alert alert-success">
+        <%= successMsg %>
+    </div>
+    <% } %>
+
+        <% if (errorMsg) { %>
+            <div class="alert alert-danger">
+                <%= errorMsg %>
+            </div>
+            <% } %> -->
+
+            <!-- partials/flash.ejs -->
+            <% if (locals.success) { %>
+                <div class="alert alert-success">
+                    <%= locals.success %>
+                </div>
+                <% } %>
+            
+                    <% if (locals.error) { %>
+                        <div class="alert alert-danger">
+                            <%= locals.error %>
+                        </div>
+                        <% } %>
