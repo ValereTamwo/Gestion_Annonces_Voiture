@@ -33,21 +33,22 @@
                                 <h3 class="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     Join us
                                 </h3>
-                                <form>
+                            
+                                <form method="post" action="/signup">
                                     <div class="mb-1 sm:mb-2">
                                         <label class="text-gray-700 dark:text-gray-200" for="username">Username</label>
-                                        <input id="username" type="text"
+                                        <input id="username" type="text" name="pseudo"
                                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-[#35a12b] focus:ring-[#35a12b] focus:ring-opacity-40 focus:outline-none focus:ring">
                                     </div>
                                     <div class="mb-1 sm:mb-2">
                                         <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Email
                                             Address</label>
-                                        <input id="emailAddress" type="email"
+                                        <input id="emailAddress" type="email" name="email"
                                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-[#35a12b] focus:ring-[#35a12b] focus:ring-opacity-40 focus:outline-none focus:ring">
                                     </div>
                                     <div class="mb-1 sm:mb-2">
                                         <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
-                                        <input id="password" type="password"
+                                        <input id="password" type="password" name="mdp"
                                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-[#35a12b] focus:ring-[#35a12b] focus:ring-opacity-40 focus:outline-none focus:ring">
                                     </div>
                                     <div class="mt-4 mb-2 sm:mb-4">

@@ -2,10 +2,12 @@ const express = require("express")
 const router = require("./Routes/Router")
 const swagger = require("./swager")
 const session = require('express-session');
+const flash = require('connect-flash');
 const app = express()
 
 const cors = require("cors")
 
+app.use(flash());
 const corsOptions = {
   origin: "*",
 };
