@@ -37,7 +37,7 @@ Router.post("/voitures/create",VoitureController.createVoitureSave)
 // Router.get("/voitures/:id",controller.middleware,VoitureController.info)
 // Router.get("/voitures/update",controller.middleware,VoitureController.update)
 // Router.post("/voitures",controller.middleware,VoitureController.updateVoiture)
-// Router.get("/voitures/delete/:id",controller.middleware,VoitureController.deleteVoiture)
+Router.get("/voitures/delete/:id",controller.middleware,VoitureController.deleteVoiture)
 // Router.get("/voitures/search",controller.middleware,VoitureController.search)
 
 
@@ -47,7 +47,7 @@ Router.post("/voitures/create",VoitureController.createVoitureSave)
 Router.post("/annonces/create",controller.middleware,AnnonceController.createAnnonceSave)
 // Router.get("/annonces/:id/edit",controller.middleware,AnnonceController.update)
 // Router.post("/annonces/edit",controller.middleware,AnnonceController.updateSave)
-// Router.get("/annonces/delete/:id",controller.middleware,AnnonceController.delete)
+Router.get("/annonces/delete/:id",controller.middleware,AnnonceController.delete)
 // Router.get("/annonces/search",controller.middleware,AnnonceController.search)
 // Router.get("/annonces/:id",controller.middleware,AnnonceController.info)
 

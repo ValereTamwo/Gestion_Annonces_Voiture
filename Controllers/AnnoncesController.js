@@ -98,7 +98,8 @@ exports.delete = (req, res) => {
        res.redirect('back');
     } else {
         //TODO
-      res.redirect('/annonces');
+        req.flash("success", "deleted");
+        res.redirect("back");
     }
   });
 }
