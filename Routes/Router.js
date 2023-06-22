@@ -20,7 +20,7 @@ const Router = express.Router()
 Router.get("/",controller.index)
 Router.get("/dashboard ",controller.middleware,controller.home)
 
-
+//Routes pour les utilisateurs
 //route pour l'authentification
 Router.get("/login",authController.login)
 Router.get("/register",authController.register)
