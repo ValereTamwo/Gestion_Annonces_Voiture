@@ -2,7 +2,7 @@ const { error } = require("console");
 const db = require("../Models/Entity");
 const multer = require('multer');
 
-// Configuration de multer pour stocker les fichiers dans le dossier "uploads"
+// Configuration de multer pour stocker les fichiers dans le dossier "upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/uploads/');
@@ -14,7 +14,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 
-
 exports.index = (req,res)=>{
     res.render("/pages/index")
 }
@@ -24,43 +23,47 @@ exports.create = (req,res)=>{
 }
 
 //function pour creer la voiture et stoker l'image de la voiture
+
+
+
 exports.createVoitureSave = (req,res)=>{
+  console.log("enregistrement de la voiture");
     // middleware pour enregistrer les photos avant d'insérer la voiture
-    const savePhotos = upload.array('photos');
+    const savePhotos = upload.array('photos', 1);
     savePhotos(req, res, (err) => {
         if (err) {
             console.log(err.message);
             //TODO: redirection vers une page d'erreur
-            req,flash("error",err.message)
+            req.flash("error",err.message)
             res.redirect("back")
         } else {
-            const {marque, couleur, annee, modele, kilometrage, id_user} = req.body
-            const photos = req.files.map(file => file.filename).join(';');
+          const id_user = req.session.user.id_user
+            const {marque, couleur, annee, modele, kilometrage} = req.body 
+            // const photos = req.files.map(file => file.filename);
+             const photos = req.files ? req.files.map(file => file.filename) : []
             console.log(photos);
             // insert one row into the voiture table
-            db.run(`INSERT INTO voitures(marque, couleur, annee, modele, kilometrage, id_user,photos) VALUES(?,?,?,?,?,?,?)`, [marque, couleur, annee, modele, kilometrage, id_user,photos+"uploads/"], (err)=> {
+            db.run(`INSERT INTO voitures(marque, couleur, annee, modele, kilometrage, id_user,photos) VALUES(?,?,?,?,?,?,?)`, [marque, couleur, annee, modele, kilometrage, id_user,`uploads/${photos[0]}`], function(err) {
               if (err) {
-                //en cas d'erreur redirection 
-                req.flash("error",err.message)
                 console.log(err.message);
-              res.render("back")
+                //TODO: redirection vers une page d'erreur
+                req.flash("error",err.message)
+                res.redirect("back")
               } else {
-                db.all("SELECT * FROM voitures",(err,rows)=>{
-                  if (err) {
-                    req.flash('error', err.message);
-                    res.redirect('back');
-                  }else{
-                    req.flash('success', 'You have successfullycrete the car');
-                    res.render("pages/index",{voitures:rows}); 
-                  }
-                  })
+                console.log(`A row has been inserted with rowid ${this.lastID}`);
+                //TODO: redirection vers la page de la voiture créée
+                req.flash("success","Voiture créée avec succès")
+                res.redirect("/dashboard/cars")
               }
             });
         }
     });
 };
 
+
 //parametre id
+
+
 exports.infoVoiture = (req,res)=>{
 try {
     const {id} = req.body   

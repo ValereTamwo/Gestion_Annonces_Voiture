@@ -22,8 +22,8 @@ exports.all =  (req, res) => {
 
 // Route pour créer une annonce
 exports.createAnnonceSave = (req, res) => {
-  const  id_user = req.session.user_id
-  const { titre, description, prix, id_voiture,} = req.body;
+  const  id_user = req.session.user.id_user
+  const { titre, description, prix, id_voiture} = req.body;
   db.run(
     'INSERT INTO annonces (titre, description,prix, id_voiture, id_user) VALUES (?, ?, ?, ?, ?)',
     [titre, description, prix, id_voiture, id_user],
@@ -34,7 +34,7 @@ exports.createAnnonceSave = (req, res) => {
                req.flash('error', err.message);
        res.redirect('back');
       } else {
-        res.redirect('/annonces');
+        res.redirect('/dashboard/announcements');
       }
     }
   );

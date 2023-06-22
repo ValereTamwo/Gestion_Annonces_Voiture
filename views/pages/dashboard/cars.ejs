@@ -583,7 +583,7 @@
                                 </div>
                                 <section class="max-w-6xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
 
-                                    <form>
+                                    <form method="post" action="/voitures/create" enctype="multipart/form-data">
                                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                                             <div>
                                                 <label class="text-gray-700 " for="marque">Marque</label>
@@ -622,12 +622,12 @@
 
                                                 <input type="file"
                                                     class="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-[#1f551a] focus:outline-none focus:ring focus:ring-[#1f551a] focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-[#1f551a]"
-                                                    name="image" />
+                                                    name="photos" />
                                             </div>
                                         </div>
 
                                         <div class="flex justify-end mt-6">
-                                            <button
+                                            <button type="submit"
                                                 class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#1f551a] hover:bg-[#1f551afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Save</button>
                                         </div>
                                     </form>
