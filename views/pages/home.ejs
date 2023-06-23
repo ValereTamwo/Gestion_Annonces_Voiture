@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <style>
@@ -128,8 +128,8 @@
     <div class="image-container ">
       <img src="assets/images/images.jpeg" alt="Image de fond">
       <div class="overlay">
-        <p class="fs-2 text-light custom-md-font ">Accompagner Votre mobilite est pour nous une priorites , Decouvrer
-          les meilleurs annonces de Vente de Voitures </p>
+        <p class="fs-2 text-light custom-md-font ">Accompanying your mobility is a priority for us ,
+          <br> Discover the best ads for Sale of Cars</p>
       </div>
     </div>
   </div>
@@ -200,19 +200,23 @@
       <section class="row gy-3 mb-4">
         <h4>Toutes nos annonces</h4>
         <% for( let i=0; i < annonces.length; i++ ) { %>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card">
-            <img src="<%= url[0] %>/<%= annonces[i].photos %>" alt="Coding" class="card-img-top">
-            <div class="card-body">
-              <h1 class="h3 card-title"><%= annonces[i].titre %></h1>
-              <p class="card-text"><%= annonces[i].description %></p>
-              <a href="/details/<%=annonces[i].id_annonce%>" class="btn btn-success">En Savoir plus</a>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card">
+              <img src="<%= url[0] %>/<%= annonces[i].photos %>" alt="Coding" class="card-img-top">
+              <div class="card-body">
+                <h1 class="h3 card-title">
+                  <%= annonces[i].titre %>
+                </h1>
+                <p class="card-text">
+                  <%= annonces[i].description %>
+                </p>
+                <a href="/details/<%=annonces[i].id_annonce%>" class="btn btn-success">En Savoir plus</a>
+              </div>
             </div>
           </div>
-        </div>
-         <% } %>
+          <% } %>
 
-        <!-- <div class="col-12 col-md-6 col-lg-3">
+            <!-- <div class="col-12 col-md-6 col-lg-3">
           <div class="card">
             <img src="/assets/images/car.jpeg" alt="Mixing" class="card-img-top">
             <div class="card-body">
@@ -256,65 +260,6 @@
             </div>
           </div>
         </div> -->
-
-      </section>
-           <section class="row gy-3 mb-4">
-        <h4>Annonces Recentes</h4>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card">
-            <img src="/assets/images/car.jpeg" alt="Coding" class="card-img-top">
-            <div class="card-body">
-              <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
-              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque
-                temporibus delectus est rem.</p>
-              <a href="/details" class="btn btn-success">En Savoir plus</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card">
-            <img src="/assets/images/car.jpeg" alt="Mixing" class="card-img-top">
-            <div class="card-body">
-              <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
-              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque
-                temporibus delectus est rem.</p>
-              <a href="/details" class="btn btn-success">En Savoir plus</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card">
-            <img src="/assets/images/car.jpeg" alt="Teaching" class="card-img-top">
-            <div class="card-body">
-              <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
-              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque
-                temporibus delectus est rem.</p>
-              <a href="/details" class="btn btn-success">En Savoir plus</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card">
-            <img src="/assets/images/images.jpeg" alt="Vidéo" class="card-img-top">
-            <div class="card-body">
-              <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
-              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque
-                temporibus delectus est rem.</p>
-              <a href="/details" class="btn btn-success">En Savoir plus</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card">
-            <img src="/assets/images/images.jpeg" alt="Vidéo" class="card-img-top">
-            <div class="card-body">
-              <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
-              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque
-                temporibus delectus est rem.</p>
-              <a href="/details" class="btn btn-success">En Savoir plus</a>
-            </div>
-          </div>
-        </div>
 
       </section>
     </section>
