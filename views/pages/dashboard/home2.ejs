@@ -35,7 +35,7 @@
                                         </div>
 
                                         <div class="ml-4">
-                                            <p class="text-lg font-bold">John Doe</p>
+                                            <p class="text-lg font-bold"><%=locals. pseudo %></p>
                                             <p>role</p>
                                         </div>
                                     </div>
@@ -54,17 +54,17 @@
                                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                                             <div>
                                                 <label class="text-gray-700 dark:text-gray-200" for="username">Username</label>
-                                                <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring " value="USERNAME">
+                                                <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring " value="<%= locals.pseudo %>">
                                             </div>
                                 
                                             <div>
                                                 <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Email Address</label>
-                                                <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" name="email" value="email@gmail.com">
+                                                <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" name="email" value="<%= locals.email %>">
                                             </div>
                                 
                                             <div>
                                                 <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
-                                                <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" disabled value="password" name="password">
+                                                <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" disabled value="<%= locals.password %>" name="password">
                                             </div>
                                 
                                             

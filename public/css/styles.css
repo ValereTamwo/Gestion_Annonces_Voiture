@@ -35,3 +35,42 @@
     opacity: 1;
     visibility: visible;
   }
+
+
+  .modal2 {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .modal-overlay2 {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .modal-container2 {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .modal-container2.active2 {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+  
+  .modal-overlay2.active2 {
+    opacity: 1;
+    visibility: visible;
+    background-color: black;
+    opacity: 0.6;
+    
+  }
+  
+  .modal2.active2 {
+    opacity: 1;
+    visibility: visible;
+  }
