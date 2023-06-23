@@ -73,7 +73,7 @@ exports.createVoitureSave = (req, res) => {
 
 exports.infoVoiture = (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     // select all rows from the voiture table
     db.all(`SELECT * FROM voitures WHERE id_voiture = ?`, [id], (err, row) => {
       if (err) {
@@ -83,6 +83,7 @@ exports.infoVoiture = (req, res) => {
         res.redirect("back");
       }
       //TODO: redirection ver une page avec les infos sur la voiture
+      res.send(row)
     });
   } catch (error) {
     console.log(error.message);
@@ -115,12 +116,61 @@ exports.listVoiture = (req, res) => {
 exports.update = (req, res) => {
   res.render("/pages/updateVoiture");
 };
+
+exports.updateNew  = (req, res) => {
+  const {id }=req.params;
+
+  console.log("Update de la voiture");
+  // middleware pour enregistrer les photos avant d'insérer la voiture
+  const savePhotos = upload.array("photos", 1);
+  savePhotos(req, res, (err) => {
+    if (err) {
+      console.log(err.message);
+      //TODO: redirection vers une page d'erreur
+      req.flash("error", err.message);
+      res.redirect("back");
+    } else {
+      const id_user = req.session.user.id_user;
+      const { marque, couleur, annee, modele, kilometrage } = req.body;
+      // const photos = req.files.map(file => file.filename);
+      const photos = req.files ? req.files.map((file) => file.filename) : [];
+      console.log(photos);
+      // insert one row into the voiture table
+      db.run(
+        'UPDATE voitures SET marque=?, couleur=?, annee=?, modele=?, kilometrage=?,photos=? WHERE id_voiture = ?',
+        [
+          marque,
+          couleur,
+          annee,
+          modele,
+          kilometrage,
+          `uploads/${photos[0]}`,
+          id,
+        ],
+        function (err) {
+          if (err) {
+            console.log(err.message);
+            //TODO: redirection vers une page d'erreur
+            req.flash("error", err.message);
+            res.redirect("back");
+          } else {
+            console.log(`A row has been inserted with rowid ${this.lastID}`);
+            //TODO: redirection vers la page de la voiture créée
+            req.flash("success", "Voiture modifiée avec succès");
+            res.redirect("/dashboard/cars");
+          }
+        }
+      );
+    }
+  });
+};
+
 exports.updateVoiture = (req, res) => {
   try {
     // update one row in the voiture table
-    const { id_voiture } = req.body;
+    const { id_voiture } = req.params;
     //TODO recuperation des autres informations
-
+    console.log(req)
     db.run(
       `UPDATE voitures SET marque = ? WHERE id_voiture = ?`,
       [newMarque, id_voiture],

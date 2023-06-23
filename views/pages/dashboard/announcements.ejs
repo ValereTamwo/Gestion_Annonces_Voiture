@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
     <title>CarSell | dashboard | announcements</title>
 
+    <script src="/sweetalert/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="/sweetalert/dist/sweetalert2.min.css">
 
 </head>
 
@@ -107,7 +109,8 @@
                                                                             <div class="flex items-center gap-x-2">
                                                                                 <h2
                                                                                     class="font-medium text-gray-800 dark:text-white ">
-                                                                                    1</h2>
+                                                                                    <%= annonces[i].id_annonce %>
+                                                                                </h2>
                                                                             </div>
                                                                         </div>
                                                                     </td>
@@ -116,13 +119,14 @@
                                                                         <div class="inline-flex items-center gap-x-3">
 
                                                                             <div class="flex items-center gap-x-2">
-                                                                                <img class="object-cover w-10 h-10 rounded-full"
+                                                                                <!-- <img class="object-cover w-10 h-10 rounded-full"
                                                                                     src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                                                                                    alt="">
+                                                                                    alt=""> -->
                                                                                 <div>
                                                                                     <h2
                                                                                         class="font-medium text-gray-800 dark:text-white ">
-                                                                                        <%= annonces[i].titre %></h2>
+                                                                                        <%= annonces[i].titre %>
+                                                                                    </h2>
 
                                                                                 </div>
                                                                             </div>
@@ -134,24 +138,31 @@
                                                                             class="inline-flex items-center px-3 py-1 rounded-full gap-x-2">
 
 
-                                                                            <h2><%= annonces[i].description %></h2>
+                                                                            <h2>
+                                                                                <%= annonces[i].description %>
+                                                                            </h2>
                                                                         </div>
                                                                     </td>
                                                                     <td
-                                                                        class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"><%= annonces[i].prix %></td>
+                                                                        class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                                        <%= annonces[i].prix %>
+                                                                    </td>
                                                                     <td
                                                                         class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                                                        <%= annonces[i].id_user %></td>
+                                                                        <%= annonces[i].id_user %>
+                                                                    </td>
                                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                                         <div class="flex items-center gap-x-2">
                                                                             <h1
                                                                                 class="font-medium text-gray-800 dark:text-white ">
-                                                                                <%= annonces[i].id_voiture %></h1>
+                                                                                <%= annonces[i].id_voiture %>
+                                                                            </h1>
                                                                         </div>
                                                                     </td>
                                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                                         <div class="flex items-center gap-x-6">
                                                                             <a href="/annonces/delete/<%= annonces[i].id_annonce%>"
+                                                                                onclick="confirmDeletion(event)"
                                                                                 class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
@@ -164,8 +175,9 @@
                                                                                 </svg>
                                                                             </a>
 
-                                                                            <button
-                                                                                class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                            <button id="open-modal-modif"
+                                                                                key-custom-attribute="<%= annonces[i].id_annonce %>"
+                                                                                class="open-modal-modif text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
                                                                                     stroke-width="1.5"
@@ -267,17 +279,17 @@
                                 </div>
                                 <section class="max-w-6xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
 
-                                    <form method="post" action="/annonces/create">
+                                    <form id="form" method="post" action="">
                                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                                             <div>
-                                                <label class="text-gray-700 " for="title">Title</label>
-                                                <input id="title" type="text" name="titre" value=""
+                                                <label class="text-gray-700 " for="titre">Title</label>
+                                                <input id="titre" type="text" name="titre" value=""
                                                     class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#1f551a] focus:ring-[#1f551a] focus:ring-opacity-40 dark:focus:border-[#1f551a] focus:outline-none focus:ring">
                                             </div>
 
                                             <div>
-                                                <label class="text-gray-700 " for="price">Price</label>
-                                                <input id="price" type="number" name="prix" value=""
+                                                <label class="text-gray-700 " for="prix">Price</label>
+                                                <input id="prix" type="number" name="prix" value=""
                                                     class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#1f551a] focus:ring-[#1f551a] focus:ring-opacity-40 dark:focus:border-[#1f551a] focus:outline-none focus:ring">
                                             </div>
 
@@ -299,9 +311,11 @@
                                                     :</label>
                                                 <select id="car" name="id_voiture"
                                                     class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#1f551a] focus:ring-[#1f551a] focus:ring-opacity-40 dark:focus:border-[#1f551a] focus:outline-none focus:ring">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
+                                                    <% for( let i=0; i < voitures.length; i++ ) { %>
+                                                        <option value="<%= voitures[i].id_voiture %>">
+                                                            <%= voitures[i].marque %>_<%= voitures[i].modele %>
+                                                        </option>
+                                                        <% } %>
                                                 </select>
                                             </div>
 
@@ -311,9 +325,12 @@
 
                                         </div>
 
-                                        <div class="flex justify-end mt-6">
-                                            <button type="submit"
-                                                class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#1f551a] hover:bg-[#1f551afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Save</button>
+                                        <div class="flex justify-between mt-6">
+                                            <button type="submit" id="btn-form"
+                                                class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#1f551a] hover:bg-[#1f551afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Create</button>
+                                            <button type="button" id="cancel-modal"
+                                                class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#551a1a] hover:bg-[#551a1afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Cancel</button>
+
                                         </div>
                                     </form>
                                 </section>
@@ -326,13 +343,61 @@
     </main>
 
     <script>
+
+        /* 
+        * -----------------------------------------------------
+        *|Début des scripts concernant la modale de suppréssion|
+        * -----------------------------------------------------
+        */
+        function confirmDeletion(event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: "Delete Alert",
+                text: "Are you really sure you want to delete this ad? Once this action has been confirmed, the ad will be permanently deleted.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#1f551a",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "I'm sure",
+                cancelButtonText: "I'm not sure",
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                    cancelButton: "btn btn-danger",
+                    popup: "my-popup-class",
+                    content: "my-content-class",
+                },
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = event.target.parentNode.href;
+                    console.log("Action confirmée");
+                } else {
+                    console.log("Action annulée");
+                }
+            });
+        }
+
+        /* 
+        * ---------------------------------------------------
+        *| Début des scripts concernant les modales d'ajout et d'update |
+        * ---------------------------------------------------
+        **
+        */
         const openModal = document.getElementById("open-modal");
+
+        // Update modal
+        const openModal2 = document.querySelectorAll(".open-modal-modif");
+
+
         const modal = document.getElementById("modal");
         const closeModal = document.querySelectorAll(".modal-close");
         const modalOverlay = document.getElementById("modal-overlay");
         const modalContainer = document.getElementById("modal-container");
         const modalClose = document.getElementById("close-modal");
         const modalContent = document.querySelectorAll(".modal-content");
+
+        // Update modal
+        const cancelModal = document.getElementById("cancel-modal");
 
         function toggleModal() {
             modal.classList.toggle("active");
@@ -344,7 +409,36 @@
 
         openModal.addEventListener("click", function () {
             toggleModal();
+            document.getElementById("form").setAttribute("action", "/annonces/create")
         });
+
+        // Update modal
+        openModal2.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                toggleModal();
+                document.getElementById("form").setAttribute("action", `/annonces/update/${btn.getAttribute("key-custom-attribute")}`)
+
+                // console.log(btn.getAttribute("key-custom-attribute"))
+                // Requête pour recupérer la voiture correspondante
+                fetch(`/annonces/search/${btn.getAttribute("key-custom-attribute")}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        fillForm(...data);
+                        // console.log(...data)
+                    })
+                    .catch(err => console.log(err.message))
+            })
+        })
+
+        const fillForm = (data) => {
+            console.log(data)
+            document.getElementById("titre").value = data.titre;
+            document.getElementById("prix").value = data.prix;
+            document.getElementById("user").value = data.id_user; // Mettre l'id du user courant
+            document.getElementById("description").value = data.description;
+            document.getElementById("car").value = data.id_voiture;
+            // document.getElementById("form").setAttribute("action", `/voitures/${openModal2.getAttribute("key-custom-attribute")}`)
+        }
 
         // modalContent.forEach(function (btn) {
         //     btn.addEventListener("click", function () {
@@ -363,6 +457,10 @@
                 toggleModal();
             });
         });
+
+        cancelModal.addEventListener("click", () => {
+            toggleModal();
+        })
 
         document.onkeydown = function (evt) {
             evt = evt || window.event;

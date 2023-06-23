@@ -34,9 +34,10 @@ Router.get("/logout",authController.logout)
 Router.get("/voitures",controller.middleware,VoitureController.listVoiture)
 Router.get("/voitures/create",controller.middleware,VoitureController.create) //cette route n'est pas utiliser
 Router.post("/voitures/create",VoitureController.createVoitureSave)
-// Router.get("/voitures/:id",controller.middleware,VoitureController.info)
+Router.get("/voitures/search/:id",controller.middleware,VoitureController.infoVoiture)
 // Router.get("/voitures/update",controller.middleware,VoitureController.update)
-// Router.post("/voitures",controller.middleware,VoitureController.updateVoiture)
+// Router.post("/voitures/:id",controller.middleware,VoitureController.updateVoiture)
+Router.post("/voitures/:id",controller.middleware,VoitureController.updateNew)
 Router.get("/voitures/delete/:id",controller.middleware,VoitureController.deleteVoiture)
 // Router.get("/voitures/search",controller.middleware,VoitureController.search)
 
@@ -46,10 +47,11 @@ Router.get("/voitures/delete/:id",controller.middleware,VoitureController.delete
 // Router.get("/annonces/create",controller.middleware,AnnonceController.create)
 Router.post("/annonces/create",controller.middleware,AnnonceController.createAnnonceSave)
 // Router.get("/annonces/:id/edit",controller.middleware,AnnonceController.update)
-// Router.post("/annonces/edit",controller.middleware,AnnonceController.updateSave)
+// Router.post("/annonces/update/:id",controller.middleware,AnnonceController.updateSave)
+Router.post("/annonces/update/:id",controller.middleware,AnnonceController.updateNew)
 Router.get("/annonces/delete/:id",controller.middleware,AnnonceController.delete)
 // Router.get("/annonces/search",controller.middleware,AnnonceController.search)
-// Router.get("/annonces/:id",controller.middleware,AnnonceController.info)
+Router.get("/annonces/search/:id",controller.middleware,AnnonceController.info)
 
  
 Router.get("/details",controller.detail) 

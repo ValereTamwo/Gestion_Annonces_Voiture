@@ -75,6 +75,23 @@ exports.cars = (req,res)=>{
 exports.announcements = (req,res)=>{
     const id_user = req.session.user.id_user
     console.log(id_user);
+    voitures = [];
+
+    try {
+        db.all("SELECT * FROM voitures WHERE id_user = ?",[id_user], (err, rows) => {
+            if(err) {
+                console.log(err.message);
+            } else {
+                console.log("liste des voitures à populate d'un user à populate : ");
+                voitures = rows;
+                console.log(voitures)
+            }
+        })
+    } catch(error) {
+
+    }
+
+
     try {
         db.all("SELECT * FROM annonces WHERE id_user=?",[id_user],(err,rows)=>{
             if (err) {
@@ -83,7 +100,9 @@ exports.announcements = (req,res)=>{
             }else{
                 console.log("liste des annonces"); 
                 console.log(rows); 
-                return     res.render('pages/dashboard/announcements', {annonces:rows,url: req.url.split("/")})
+                // console.log("voitures", voitures)
+                // console.log(req.url)
+                return     res.render('pages/dashboard/announcements', {annonces:rows,voitures,url: req.url.split("/")})
             }
         })
     } catch (error) {
