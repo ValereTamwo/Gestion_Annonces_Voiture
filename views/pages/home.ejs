@@ -96,9 +96,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar-content">
 
-        <form method="get" action="/" id="searchForm" class="ms-auto ">
+        <form method="post" action="/search" id="searchForm" class="ms-auto ">
           <div class="input-group">
-            <input type="search" name="q" placeholder="Rechercher" class="form-control">
+            <input type="search" name="description" placeholder="Rechercher" class="form-control">
             <button type="submit" class="btn btn-success">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                 viewBox="0 0 16 16">
@@ -111,7 +111,7 @@
 
         <nav>
           <ul class="navbar-nav  ms-auto">
-            <li class="nav-item"><a class="ms-md-4 nav-link" href="/home">Home</a></li>
+            <li class="nav-item"><a class="ms-md-4 nav-link" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link active" href="/about">About Us</a></li>
 
             <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
@@ -198,23 +198,25 @@
   <main class="container mt-4 border border-light rounded " style="padding: 10px;">
     <section class="container-fluid">
       <section class="row gy-3 mb-4">
-        <h4>Annonces Recentes</h4>
+        <h4>Toutes nos annonces</h4>
+        <% for( let i=0; i < annonces.length; i++ ) { %>
         <div class="col-12 col-md-6 col-lg-3">
           <div class="card">
-            <img src="/assets/images/car.jpeg" alt="Coding" class="card-img-top">
+            <img src="<%= url[0] %>/<%= annonces[i].photos %>" alt="Coding" class="card-img-top">
             <div class="card-body">
-              <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
-              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque
-                temporibus delectus est rem.</p>
-              <a href="/details" class="btn btn-success">En Savoir plus</a>
+              <h1 class="h3 card-title"><%= annonces[i].titre %></h1>
+              <p class="card-text"><%= annonces[i].description %></p>
+              <a href="/details/<%=annonces[i].id_annonce%>" class="btn btn-success">En Savoir plus</a>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
+         <% } %>
+
+        <!-- <div class="col-12 col-md-6 col-lg-3">
           <div class="card">
             <img src="/assets/images/car.jpeg" alt="Mixing" class="card-img-top">
             <div class="card-body">
-              <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
+              <h1 class="h3 card-title">Annonces 1</h1>
               <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque
                 temporibus delectus est rem.</p>
               <a href="/details" class="btn btn-success">En Savoir plus</a>
@@ -253,15 +255,14 @@
               <a href="/details" class="btn btn-success">En Savoir plus</a>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </section>
-
-      <section class="row gy-3 mb-4">
-        <h4>Toutes nos annonces</h4>
+           <section class="row gy-3 mb-4">
+        <h4>Annonces Recentes</h4>
         <div class="col-12 col-md-6 col-lg-3">
           <div class="card">
-            <img src="/assets/images/car2.jpeg" alt="Coding" class="card-img-top">
+            <img src="/assets/images/car.jpeg" alt="Coding" class="card-img-top">
             <div class="card-body">
               <h1 class="h3 card-title">Lorem, ipsum dolor.</h1>
               <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium explicabo, neque

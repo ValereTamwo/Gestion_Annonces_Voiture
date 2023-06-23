@@ -2,7 +2,7 @@ const db = require("../Models/Entity");
 
 // Route pour afficher toutes les annonces
 exports.all = (req, res) => {
-  db.all("SELECT * FROM annonces", (err, rows) => {
+  db.all("SELECT *FROM annonces INNER JOIN voitures ON annonces.id_voiture = voitures.id_voiture", (err, rows) => {
     if (err) {
       console.error(err.message);
       req.flash("error", err.message);
@@ -10,7 +10,7 @@ exports.all = (req, res) => {
       res.redirect("back");
     } else {
       //TODO: configuration de la route de retour
-      res.render("annonces.ejs", { annonces: rows });
+      res.render("pages/home", { annonces: rows ,url: req.url.split("/")});
     }
   });
 };
@@ -136,7 +136,7 @@ exports.delete = (req, res) => {
 exports.info = (req, res) => {
   const id_annonce = req.params.id;
   db.all(
-    `SELECT * FROM annonces WHERE id_annonce = ?`,
+    `SELECT *FROM annonces INNER JOIN voitures ON annonces.id_voiture = voitures.id_voiture WHERE id_annonce = ?`,
     [id_annonce],
     (err, row) => {
       if (err) {
@@ -147,8 +147,9 @@ exports.info = (req, res) => {
         res.redirect("back");
       } else {
         console.log(row);
+        res.render(`pages/details`, { annonce: row ,url: req.url.split("/")});
         //TODO
-        res.json(row);
+        // res.json(row);
         // res.redirect('/annonces');
       }
     }
@@ -157,9 +158,9 @@ exports.info = (req, res) => {
 
 // Route pour chercher une annonce
 exports.search = (req, res) => {
-  const { description } = req.query;
+  const { description } = req.body;
   db.all(
-    "SELECT * FROM annonces WHERE description LIKE ?",
+    "SELECT *FROM annonces INNER JOIN voitures ON annonces.id_voiture = voitures.id_voiture WHERE description LIKE ?",
     [`%${description}%`],
     (err, rows) => {
       if (err) {
@@ -170,8 +171,10 @@ exports.search = (req, res) => {
         res.redirect("back");
       } else {
         //TODO:
-        res.render("annonces.ejs", { annonces: rows });
+        console.log('description :' , description);
+        res.render("pages/home", { annonces: rows,url: req.url.split("/") });
       }
     }
   );
 };
+

@@ -22,14 +22,14 @@ app.use(express.json())
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+  
 //configuration des parametres de gestion de session
 app.use(session({
     secret: 'folong201',
     resave: false,
     saveUninitialized: false
 }));
-
+  
 //configuration du themplate de vue
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');

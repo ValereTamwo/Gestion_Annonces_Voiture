@@ -17,11 +17,15 @@ const Router = express.Router()
  *          200:
  *              description:Welcome to the home.
  */
-Router.get("/",controller.index)
+Router.get("/",AnnonceController.all)
 Router.get("/dashboard",controller.middleware,controller.home)
 Router.get("/dashboard/cars",controller.middleware,controller.cars)
 Router.get("/dashboard/announcements",controller.middleware,controller.announcements)
 Router.get("/dashboard/reporting",controller.middleware,controller.reporting)
+
+
+// Resultat de recherche
+Router.post("/search",AnnonceController.search)
 
 //Routes pour les utilisateurs
 //route pour l'authentification
@@ -54,7 +58,7 @@ Router.get("/annonces/delete/:id",controller.middleware,AnnonceController.delete
 Router.get("/annonces/search/:id",controller.middleware,AnnonceController.info)
 
  
-Router.get("/details",controller.detail) 
+Router.get("/details/:id",AnnonceController.info) 
 /**
  * @swagger
  * /users:
