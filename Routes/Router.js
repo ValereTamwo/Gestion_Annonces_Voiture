@@ -25,6 +25,7 @@ Router.get("/dashboard/reporting",controller.middleware,controller.reporting)
 
 
 // Resultat de recherche
+// Router.get("/search", AnnonceController.search)
 Router.post("/search",AnnonceController.search)
 
 //Routes pour les utilisateurs
@@ -42,7 +43,7 @@ Router.get("/voitures/search/:id",controller.middleware,VoitureController.infoVo
 // Router.get("/voitures/update",controller.middleware,VoitureController.update)
 // Router.post("/voitures/:id",controller.middleware,VoitureController.updateVoiture)
 Router.post("/voitures/:id",controller.middleware,VoitureController.updateNew)
-Router.get("/voitures/delete/:id",controller.middleware,VoitureController.deleteVoiture)
+Router.get("/voitures/delete/:id",controller.middleware,VoitureController.delete_voiture_transaction)
 // Router.get("/voitures/search",controller.middleware,VoitureController.search)
 
 

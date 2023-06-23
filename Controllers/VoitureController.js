@@ -216,6 +216,45 @@ exports.deleteVoiture = (req, res) => {
   }
 };
 
+exports.delete_voiture_transaction = (req, res) => { 
+  const carId = req.params.id;
+  db.serialize(() => {
+  // Début de la transaction
+  db.run('BEGIN TRANSACTION');
+
+  // Supprimer toutes les annonces liées à la voiture
+  db.run('DELETE FROM annonces WHERE id_voiture = ?', carId, function (err) {
+    if (err) {
+      // En cas d'erreur, annuler la transaction
+      console.error('Erreur lors de la suppression des annonces:', err.message);
+      db.run('ROLLBACK');
+      return;
+    }
+
+    // Supprimer la voiture elle-même
+    db.run('DELETE FROM voitures WHERE id_voiture = ?', carId, function (err) {
+      if (err) {
+        // En cas d'erreur, annuler la transaction
+        console.error('Erreur lors de la suppression de la voiture:', err.message);
+        db.run('ROLLBACK');
+        return;
+      }
+
+      // Valider la transaction
+      db.run('COMMIT', function (err) {
+        if (err) {
+          console.error('Erreur lors de la validation de la transaction:', err.message);
+          return;
+        }
+
+        console.log('Suppression de la voiture et des annonces réussie.');
+        res.redirect('/dashboard/cars');
+      });
+    });
+  });
+});
+}
+
 // Route pour chercher une voiture
 exports.search = (req, res) => {
   const { search } = req.query;
