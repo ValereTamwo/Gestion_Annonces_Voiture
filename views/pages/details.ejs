@@ -73,6 +73,9 @@
 
     .car-image img {
       max-width: 100%;
+      width: 500px;
+      height: 300px;
+      object-fit: cover;
     }
 
     .car-form {
@@ -162,12 +165,14 @@
       Carsell
     </div>
     <div class="header-search">
-      <input type="text" placeholder="Recherche..." class="form-control">
-      <button class="btn btn-success" type="button">
+      <form method="post" style="display: flex;" action="/search">
+      <input type="text" name="description" placeholder="Recherche..." class="form-control">
+      <button class="btn btn-success" type="submit">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg>
       </button>
+      </form>
     </div>
     <div class="header-links">
       <a href="/about">About</a>
@@ -180,30 +185,28 @@
   <div class="car-container">
     
     <div class="car-image">
-        <img src="/assets/images/images.jpeg" alt="voiture Image">
+        <img src="<%= url[0] %>/<%= annonce[0].photos %>" alt="voiture Image">
       </div>
       <div class="car-description">
         <h2>Description</h2>
-        <p>Lorem ipsum dolor sit amet, consectet sxbxcjsfcksjdv  cxjclnczxlvnklcvk nkjsankdnsakjdnkjsnc 
-          cxzxncknxkznczjnxkcnklxlckjlkcv ncxznncklxzjm
-          bczxnckjnxzlnclknxzkncvknxkzvnkl ur adipiscing elit. Ut eu ex vitae mauris posuere fermentum. Duis vitae nisl at ante pharetra vulputate.</p>
+        <p><%= annonce[0].description%></p>
         <button class="btn btn-success">Acheter</button>
       </div>
     <div class="car-form">
       <div class="form-field">
-        <label for="title">Titre</label>
+        <label for="title"><%= annonce[0].titre%></label>
         <!-- <span id="title">Nom de la voiture</span> -->
       </div>
       <div class="form-field">
-        <label for="location">Localisation:</label>
+        <label for="couleur">Couleur: <%= annonce[0].couleur%></label>
         <!-- <span id="location">Emplacement de la voiture</span> -->
       </div>
       <div class="form-field">
-        <label for="price">Prix:</label>
+        <label for="price">Prix:<%= annonce[0].prix%></label>
         <!-- <span id="price">Prix de la voiture</span> -->
       </div>
       <div class="form-field">
-        <label for="brand">Marque:</label>
+        <label for="brand">Marque:<%= annonce[0].marque%></label>
         <!-- <span id="brand">Marque de la voiture</span> -->
       </div>
     </div>

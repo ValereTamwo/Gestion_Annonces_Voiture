@@ -16,7 +16,7 @@ exports.index = (req,res)=>{
             })
         } catch (error) {
             console.log(error.message);
-                    req.redirect("back")
+                    req.redirect("back")  
         }
     }else{ 
                 try {
