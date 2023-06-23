@@ -161,7 +161,7 @@
                                                                     </td>
                                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                                         <div class="flex items-center gap-x-6">
-                                                                            <a href="/voitures/delete/<%= voitures[i].id_voiture %>"
+                                                                            <a  href="" key-custom-attribute="<%= voitures[i].id_voiture %>"
                                                                                 onclick="confirmDeletion(event)"
                                                                                 class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -262,7 +262,7 @@
                         </div>
 
                         <div id="modal-container"
-                            class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+                            class="modal-container bg-white w-11/12 md:max-w-xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
 
                             <button onclick="toggleModal()" id="close-modal"
                                 class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-sm z-50 bg-[#1f551a] py-1 px-2 rounded-md">
@@ -327,9 +327,9 @@
 
                                         <div class="flex justify-between mt-6">
                                             <button type="submit" id="btn-form"
-                                                class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#1f551a] hover:bg-[#1f551afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Save</button>
+                                                class="inline-flex items-center justify-center w-full h-12 px-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#1f551a] hover:bg-[#1f551afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Save</button>
                                             <button type="button" id="cancel-modal"
-                                                class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#551a1a] hover:bg-[#551a1afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Cancel</button>
+                                                class="inline-flex items-center justify-center w-full h-12 px-4 ml-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#551a1a] hover:bg-[#551a1afb] hover:shadow-lg focus:shadow-outline focus:outline-none">Cancel</button>
 
                                         </div>
                                     </form>
@@ -367,7 +367,7 @@
                 },
             }).then((result) => {
                 if (result.value) {
-                    window.location.href = event.target.parentNode.href;
+                    window.location.href = "/voitures/delete/"+event.target.parentNode.getAttribute("key-custom-attribute")
                     // console.log(event.target.parentNode)
                     console.log("Action confirmée");
                 } else {

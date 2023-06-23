@@ -133,6 +133,29 @@ exports.delete = (req, res) => {
   });
 };
 
+exports.findDashboard  = (req, res) => {
+  const id_annonce = req.params.id;
+  db.all(
+    `SELECT *FROM annonces INNER JOIN voitures ON annonces.id_voiture = voitures.id_voiture WHERE id_annonce = ?`,
+    [id_annonce],
+    (err, row) => {
+      if (err) {
+        console.error(err.message);
+        //TODO:
+        console.log(err.message);
+        req.flash("error", err.message);
+        res.redirect("back");
+      } else {
+        // console.log(row);
+        // res.render(`pages/details`, { annonce: row ,url: req.url.split("/")});
+        // TODO
+        res.json(row);
+        // res.redirect('/annonces');
+      }
+    }
+  );
+};
+
 exports.info = (req, res) => {
   const id_annonce = req.params.id;
   db.all(

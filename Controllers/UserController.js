@@ -49,7 +49,8 @@ exports.index = (req,res)=>{
 }
 
 exports.home = (req,res)=>{
-   return res.render('pages/dashboard/home2', {url: req.url.split("/")})
+    const user = req.session.user;
+   return res.render('pages/dashboard/home2', {url: req.url.split("/"), user})
 
 }
 

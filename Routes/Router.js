@@ -57,6 +57,7 @@ Router.post("/annonces/update/:id",controller.middleware,AnnonceController.updat
 Router.get("/annonces/delete/:id",controller.middleware,AnnonceController.delete)
 // Router.get("/annonces/search",controller.middleware,AnnonceController.search)
 Router.get("/annonces/search/:id",controller.middleware,AnnonceController.info)
+Router.get("/annonces/findDashboard/:id",controller.middleware,AnnonceController.findDashboard)
 
  
 Router.get("/details/:id",AnnonceController.info) 

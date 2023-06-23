@@ -27,16 +27,17 @@
                                 ">
                                     <div class="flex flex-row relative">
                                         <div class="relative">
-                                            <img class="object-cover w-16 h-16 rounded-full ring ring-[#1f551afa] dark:ring-[#1f551a]"
+                                            <!-- <img class="object-cover w-16 h-16 rounded-full ring ring-[#1f551afa] dark:ring-[#1f551a]"
                                                 src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
-                                                alt="">
+                                                alt=""> -->
+                                                <div class="object-cover w-16 h-16 rounded-full ring bg-[#1f551a] ring-[#1f551afa] dark:ring-[#1f551a] flex justify-center items-center"><span class="text-5xl font-bold truncate w-9 text-center text-white h-full"><%= user.pseudo %></span></div>
                                             <span
                                                 class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#1f551a] ring-1 ring-white"></span>
                                         </div>
 
                                         <div class="ml-4">
-                                            <p class="text-lg font-bold"><%=locals. pseudo %></p>
-                                            <p>role</p>
+                                            <p class="text-xl font-bold"><%= user.pseudo %></p>
+                                            <p class="text-gray-400"><%= user.email %></p>
                                         </div>
                                     </div>
 
@@ -54,17 +55,17 @@
                                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                                             <div>
                                                 <label class="text-gray-700 dark:text-gray-200" for="username">Username</label>
-                                                <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring " value="<%= locals.pseudo %>">
+                                                <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring " value="<%= user.pseudo %>">
                                             </div>
                                 
                                             <div>
                                                 <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Email Address</label>
-                                                <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" name="email" value="<%= locals.email %>">
+                                                <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" name="email" value="<%= user.email %>">
                                             </div>
                                 
                                             <div>
                                                 <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
-                                                <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" disabled value="<%= locals.password %>" name="password">
+                                                <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md  dark:text-gray-300  focus:border-[#1f551a5e] focus:ring-[#1f551a5e] focus:ring-opacity-40 dark:focus:border-[#1f551a5e] focus:outline-none focus:ring" disabled value="<%= user.mdp %>" name="password">
                                             </div>
                                 
                                             
